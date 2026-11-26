@@ -9,13 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     /* ===== RESET & VARIÁVEIS (Quiet Luxury) ===== */
-    *,
-    *::before,
-    *::after {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
       --emerald-dark: #05140D;
@@ -46,530 +40,282 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    h1, h2, h3, h4 {
-      font-family: var(--font-heading);
-      font-weight: 400;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-    }
-
+    h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; }
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
 
-    .container {
-      width: min(1300px, 90%);
-      margin: 0 auto;
-    }
-
+    .container { width: min(1300px, 90%); margin: 0 auto; }
     .secao { padding: 140px 0; }
 
     /* ===== BOTÕES ===== */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 18px 42px;
-      font-family: var(--font-body);
-      font-weight: 500;
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      cursor: pointer;
-      border: 1px solid transparent;
-      transition: var(--transition);
-      text-align: center;
-      position: relative;
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 18px 42px; font-family: var(--font-body); font-weight: 500;
+      font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
+      cursor: pointer; border: 1px solid transparent; transition: var(--transition);
+      text-align: center; position: relative;
     }
 
-    .btn-gold {
-      background: var(--gold);
-      color: var(--emerald-dark);
-    }
-
-    .btn-gold:hover {
-      background: var(--gold-light);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(198, 168, 124, 0.2);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--white);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-
-    .btn-outline:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-
-    .btn-dark {
-      background: var(--emerald-dark);
-      color: var(--white);
-    }
-    
-    .btn-dark:hover {
-      background: var(--emerald-deep);
-    }
+    .btn-gold { background: var(--gold); color: var(--emerald-dark); }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(198, 168, 124, 0.2); }
+    .btn-outline { background: transparent; color: var(--white); border-color: rgba(255, 255, 255, 0.3); }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-dark { background: var(--emerald-dark); color: var(--white); }
+    .btn-dark:hover { background: var(--emerald-deep); }
 
     .tag {
-      font-size: 0.75rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 20px;
-      display: block;
+      font-size: 0.75rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 20px; display: block;
     }
 
     /* ===== HEADER ===== */
     header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      padding: 30px 0;
-      transition: var(--transition);
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      padding: 30px 0; transition: var(--transition);
     }
 
     header.scrolled {
-      background: rgba(5, 20, 13, 0.95);
-      backdrop-filter: blur(20px);
-      padding: 15px 0;
-      border-bottom: 1px solid rgba(198, 168, 124, 0.1);
+      background: rgba(5, 20, 13, 0.95); backdrop-filter: blur(20px);
+      padding: 15px 0; border-bottom: 1px solid rgba(198, 168, 124, 0.1);
     }
 
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .header-inner { display: flex; align-items: center; justify-content: space-between; }
+
+    /* LOGO CONFIGURADA PARA NÃO DISTORCER */
+    .logo-img {
+      height: 65px;
+      width: auto;
+      object-fit: contain;
+      /* Filtro para deixar a logo branca no fundo escuro. Se sua logo já for branca/transparente, pode apagar a linha abaixo */
+      transition: height 0.3s;
     }
 
-    .logo-text {
-      font-family: var(--font-heading);
-      font-size: 1.8rem;
-      color: var(--white);
-      letter-spacing: 2px;
-      line-height: 1;
-    }
-
-    .logo-text span {
-      display: block;
-      font-family: var(--font-body);
-      font-size: 0.5rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-top: 5px;
-    }
+    header.scrolled .logo-img { height: 50px; }
 
     nav ul { display: flex; gap: 40px; }
-
     nav a {
-      font-size: 0.75rem;
-      font-weight: 400;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.7);
-      transition: var(--transition);
+      font-size: 0.75rem; font-weight: 400; letter-spacing: 2px;
+      text-transform: uppercase; color: rgba(255, 255, 255, 0.7); transition: var(--transition);
     }
-
     nav a:hover { color: var(--gold); }
 
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
+    .menu-toggle { display: none; background: none; border: none; cursor: pointer; }
+    .menu-toggle span { display: block; width: 30px; height: 1px; background: var(--white); margin: 6px 0; }
 
-    .menu-toggle span {
-      display: block;
-      width: 30px;
-      height: 1px;
-      background: var(--white);
-      margin: 6px 0;
-    }
-
-    /* ===== HERO ===== */
+    /* ===== HERO (NOVA ESTRUTURA - IMAGEM 2) ===== */
     .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      background: var(--emerald-dark);
-      overflow: hidden;
+      min-height: 100vh; display: flex; align-items: center;
+      position: relative; background: var(--emerald-dark); overflow: hidden;
+      padding-top: 100px;
     }
 
     .hero-bg {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background-image: url('https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=1920&auto=format&fit=crop');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.3;
-      filter: blur(2px);
+      background-size: cover; background-position: center; opacity: 0.2; filter: blur(3px);
     }
 
     .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, var(--emerald-dark) 0%, rgba(5, 20, 13, 0.6) 100%);
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, var(--emerald-dark) 0%, rgba(5, 20, 13, 0.8) 100%);
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      padding-top: 80px;
+    .hero-grid {
+      position: relative; z-index: 2;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
     }
+
+    .hero-content { max-width: 100%; }
+
+    .hero-tagline {
+      display: flex; align-items: center; gap: 15px; margin-bottom: 25px;
+      font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gold); font-weight: 500;
+    }
+    .hero-tagline::before { content: ''; width: 40px; height: 1px; background: var(--gold); }
 
     .hero-content h1 {
-      font-size: clamp(3.5rem, 6vw, 6rem);
-      color: var(--white);
-      margin-bottom: 30px;
+      font-size: clamp(3.5rem, 5vw, 5rem); color: var(--white); margin-bottom: 30px;
     }
 
-    .hero-content h1 em {
-      font-style: italic;
-      color: var(--gold);
-      font-weight: 300;
-    }
+    .hero-content h1 em { font-style: italic; color: var(--gold); font-weight: 300; }
 
     .hero-content p {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 1.1rem;
-      font-weight: 300;
-      max-width: 600px;
-      margin-bottom: 50px;
+      color: rgba(255, 255, 255, 0.7); font-size: 1.05rem; font-weight: 300;
+      max-width: 500px; margin-bottom: 40px;
     }
 
-    .hero-botoes {
-      display: flex;
-      gap: 20px;
-      margin-bottom: 60px;
+    .hero-botoes { display: flex; gap: 20px; margin-bottom: 60px; }
+
+    /* Cartão de Imagem do Hero */
+    .hero-image-card {
+      position: relative; width: 100%; height: 600px; border-radius: 20px;
+      overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+      border: 6px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .hero-image-card img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    /* Elemento decorativo atrás da imagem */
+    .hero-image-wrapper { position: relative; }
+    .hero-image-wrapper::before {
+      content: ''; position: absolute; top: -20px; right: -20px;
+      width: 100%; height: 100%; border: 1px solid var(--gold);
+      border-radius: 20px; z-index: -1; opacity: 0.3;
     }
 
     .hero-selos {
-      display: flex;
-      gap: 30px;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex; gap: 30px; border-top: 1px solid rgba(255, 255, 255, 0.1);
       padding-top: 30px;
     }
-
     .selo {
-      font-size: 0.7rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.5);
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5); display: flex; align-items: center; gap: 8px;
     }
-
     .selo::before { content: '◆'; color: var(--gold); font-size: 0.5rem; }
 
     /* ===== SOBRE ===== */
-    .sobre-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 100px;
-      align-items: center;
-    }
+    .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+    .sobre-imagem { position: relative; height: 600px; }
+    .sobre-imagem img { width: 100%; height: 100%; object-fit: cover; }
+    .sobre-imagem::after { content: ''; position: absolute; inset: 20px -20px -20px 20px; border: 1px solid var(--gold); z-index: -1; }
 
-    .sobre-imagem {
-      position: relative;
-      height: 600px;
-    }
-
-    .sobre-imagem img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .sobre-imagem::after {
-      content: '';
-      position: absolute;
-      inset: 20px -20px -20px 20px;
-      border: 1px solid var(--gold);
-      z-index: -1;
-    }
-
-    .sobre-texto h2 {
-      font-size: clamp(2.5rem, 4vw, 3.5rem);
-      color: var(--emerald-dark);
-      margin-bottom: 30px;
-    }
-
-    .sobre-texto p {
-      color: var(--text-muted);
-      font-size: 1rem;
-      margin-bottom: 40px;
-    }
-
-    .diferenciais {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-    }
-
-    .diferencial-item {
-      font-size: 0.85rem;
-      color: var(--emerald-dark);
-      padding-left: 20px;
-      position: relative;
-    }
-
-    .diferencial-item::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 10px;
-      width: 8px;
-      height: 1px;
-      background: var(--gold);
-    }
+    .sobre-texto h2 { font-size: clamp(2.5rem, 4vw, 3.5rem); color: var(--emerald-dark); margin-bottom: 30px; }
+    .sobre-texto p { color: var(--text-muted); font-size: 1rem; margin-bottom: 40px; }
+    .diferenciais { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .diferencial-item { font-size: 0.85rem; color: var(--emerald-dark); padding-left: 20px; position: relative; }
+    .diferencial-item::before { content: ''; position: absolute; left: 0; top: 10px; width: 8px; height: 1px; background: var(--gold); }
 
     /* ===== SERVIÇOS ===== */
     .servicos { background: var(--emerald-dark); color: var(--white); text-align: center; }
     .servicos h2 { color: var(--white); font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 20px; }
     
-    .servicos-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin-top: 60px;
-      text-align: left;
-    }
-
+    .servicos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 60px; text-align: left; }
     .servico-card {
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 40px;
-      position: relative;
-      overflow: hidden;
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 280px;
+      border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px;
+      position: relative; overflow: hidden; transition: var(--transition);
+      display: flex; flex-direction: column; justify-content: space-between; min-height: 280px;
     }
-
-    .servico-card:hover {
-      background: rgba(255, 255, 255, 0.02);
-      border-color: var(--gold);
-    }
-
+    .servico-card:hover { background: rgba(255, 255, 255, 0.02); border-color: var(--gold); }
     .servico-card h3 { font-size: 1.4rem; margin-bottom: 10px; color: var(--white); }
     .servico-card p { font-size: 0.85rem; color: rgba(255, 255, 255, 0.6); margin-bottom: 25px; }
-
-    .card-link {
-      font-size: 0.75rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: var(--transition);
-    }
-
+    .card-link { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); display: inline-flex; align-items: center; gap: 10px; transition: var(--transition); }
     .card-link:hover { gap: 15px; }
 
-    /* ===== RESULTADOS ===== */
-    .resultados { text-align: center; }
-    .resultados h2 { font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 20px; }
-
-    .resultados-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-      margin-top: 60px;
-    }
-
-    .resultado-card {
-      position: relative;
-      aspect-ratio: 3/4;
-      overflow: hidden;
-    }
-
-    .resultado-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 1.2s ease;
-    }
-
-    .resultado-card:hover img { transform: scale(1.05); }
-
-    .resultado-card-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(5,20,13,0.8), transparent 60%);
-      display: flex;
-      align-items: flex-end;
-      padding: 30px;
-      text-align: left;
-    }
-
-    .resultado-card-overlay span {
-      color: var(--white);
-      font-family: var(--font-heading);
-      font-size: 1.5rem;
-    }
-
-    /* ===== PROFISSIONAL ===== */
-    .profissional-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 100px;
-      align-items: center;
-    }
-
-    .profissional-imagem { height: 700px; }
-    .profissional-imagem img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%); }
-
-    .profissional-texto blockquote {
-      font-family: var(--font-heading);
-      font-size: 2.5rem;
-      font-style: italic;
-      color: var(--emerald-dark);
-      line-height: 1.3;
-      margin-top: 40px;
-      border-left: 2px solid var(--gold);
-      padding-left: 30px;
-    }
-
-    /* ===== INSTAGRAM (INFINITE SLIDER) ===== */
-    .instagram { background: var(--white); text-align: center; overflow: hidden; padding-bottom: 100px; }
     
-    .insta-slider-container {
-      position: relative;
-      width: 100%;
-      margin-top: 50px;
+        /* ===== RESULTADOS ===== */
+    .resultados { text-align: center; overflow: hidden; }
+    .resultados h2 { font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 20px; }
+    
+    /* Novo container do slide infinito */
+    .resultados-slider-container {
+      position: relative; width: 100%; margin-top: 60px; overflow: hidden;
       -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
       mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     }
-
-    .insta-track {
-      display: flex;
-      gap: 20px;
-      width: max-content;
-      animation: scrollInsta 25s linear infinite;
-    }
-
-    .insta-slider-container:hover .insta-track { animation-play-state: paused; }
-
-    .insta-card {
-      position: relative;
-      width: 320px;
-      flex-shrink: 0;
-      aspect-ratio: 1;
-      overflow: hidden;
-      display: block;
-    }
-
-    .insta-card img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
-    .insta-card:hover img { transform: scale(1.05); filter: brightness(0.7); }
     
-    .insta-icon {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--white);
-      font-size: 2rem;
-      opacity: 0;
-      transition: var(--transition);
-      z-index: 2;
+    .resultados-track {
+      display: flex; gap: 20px; width: max-content;
+      animation: scrollResultados 40s linear infinite;
     }
+    
+    .resultados-slider-container:hover .resultados-track {
+      animation-play-state: paused;
+    }
+    
+    .resultado-card {
+      position: relative; flex-shrink: 0; width: 280px; aspect-ratio: 9/16;
+      overflow: hidden; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    }
+    
+    .resultado-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s ease; }
+    .resultado-card:hover img { transform: scale(1.05); }
 
-    .insta-card:hover .insta-icon { opacity: 1; }
-
-    @keyframes scrollInsta {
+    @keyframes scrollResultados {
       0% { transform: translateX(0); }
       100% { transform: translateX(calc(-50% - 10px)); }
     }
 
-    /* ===== DEPOIMENTOS (INFINITE SLIDER) ===== */
-    .depoimentos { 
-      background: var(--emerald-dark); 
-      color: var(--white); 
-      text-align: center; 
-      overflow: hidden; 
-      padding-bottom: 100px;
+    /* Depoimentos da sessão Resultados */
+    .resultados-depoimentos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; text-align: left; }
+    .depoimento-mini { background: var(--white); padding: 30px; border: 1px solid rgba(0,0,0,0.05); border-radius: 12px; }
+    .depoimento-mini p { font-family: var(--font-heading); font-size: 1.1rem; color: var(--emerald-dark); font-style: italic; margin-bottom: 15px; line-height: 1.4; }
+    .depoimento-mini span { font-size: 0.7rem; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+
+    @media (max-width: 1024px) {
+      .resultados-depoimentos { grid-template-columns: 1fr; }
+      .resultado-card { width: 240px; }
     }
+    @media (max-width: 600px) {
+      .resultado-card { width: 200px; }
+    }
+
     
-    .depoimentos h2 { color: var(--white); margin-bottom: 20px; }
+    /* ===== ESPECIALISTAS (NOVA SESSÃO DUPLA) ===== */
+    .especialistas-secao { background: var(--cream); }
+    .especialistas-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 60px; }
     
-    .depo-slider-container {
-      position: relative;
-      width: 100%;
-      margin-top: 50px;
+    .especialista-card {
+      background: var(--white); border: 1px solid rgba(0,0,0,0.05);
+      display: flex; flex-direction: column; transition: var(--transition);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.03);
+    }
+
+    .especialista-card:hover { transform: translateY(-10px); box-shadow: var(--sombra-elegante); }
+    
+    .especialista-img { width: 100%; height: 450px; object-fit: cover; object-position: top center; }
+    
+    .especialista-info { padding: 40px; display: flex; flex-direction: column; flex: 1; }
+    .especialista-info h3 { font-size: 2rem; color: var(--emerald-dark); margin-bottom: 5px; }
+    .especialista-cargo { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 20px; display: block; }
+    
+    .especialista-info p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 15px; flex: 1; }
+    
+    .especialista-social {
+      margin-top: 20px; display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.85rem; font-weight: 500; color: var(--emerald-dark); transition: var(--transition);
+    }
+    .especialista-social:hover { color: var(--gold); }
+    .especialista-social svg { width: 20px; height: 20px; fill: currentColor; }
+
+    /* ===== INSTAGRAM (INFINITE SLIDER) ===== */
+    .instagram { background: var(--white); text-align: center; overflow: hidden; padding-bottom: 100px; }
+    .insta-slider-container {
+      position: relative; width: 100%; margin-top: 50px;
       -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
       mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
     }
+    .insta-track { display: flex; gap: 20px; width: max-content; animation: scrollInsta 25s linear infinite; }
+    .insta-slider-container:hover .insta-track { animation-play-state: paused; }
+    .insta-card { position: relative; width: 320px; flex-shrink: 0; aspect-ratio: 1; overflow: hidden; display: block; }
+    .insta-card img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+    .insta-card:hover img { transform: scale(1.05); filter: brightness(0.7); }
+    .insta-icon { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 2rem; opacity: 0; transition: var(--transition); z-index: 2; }
+    .insta-card:hover .insta-icon { opacity: 1; }
 
-    .depo-track {
-      display: flex;
-      gap: 30px;
-      width: max-content;
-      animation: scrollDepo 30s linear infinite;
-    }
+    @keyframes scrollInsta { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 10px)); } }
 
+    /* ===== DEPOIMENTOS ===== */
+    .depoimentos { background: var(--emerald-dark); color: var(--white); text-align: center; overflow: hidden; padding-bottom: 100px; }
+    .depoimentos h2 { color: var(--white); margin-bottom: 20px; }
+    .depo-slider-container { position: relative; width: 100%; margin-top: 50px; -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
+    .depo-track { display: flex; gap: 30px; width: max-content; animation: scrollDepo 30s linear infinite; }
     .depo-slider-container:hover .depo-track { animation-play-state: paused; }
-
-    .depoimento-card {
-      width: 450px;
-      flex-shrink: 0;
-      padding: 50px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      text-align: left;
-      background: rgba(255, 255, 255, 0.02);
-      transition: var(--transition);
-      position: relative;
-    }
-
+    .depoimento-card { width: 450px; flex-shrink: 0; padding: 50px; border: 1px solid rgba(255, 255, 255, 0.1); text-align: left; background: rgba(255, 255, 255, 0.02); transition: var(--transition); position: relative; }
     .depoimento-card:hover { border-color: var(--gold); background: rgba(255, 255, 255, 0.04); }
-
     .depoimento-estrelas { color: var(--gold); font-size: 0.9rem; letter-spacing: 4px; margin-bottom: 25px; }
-    
-    .depoimento-card p {
-      font-family: var(--font-heading);
-      font-size: 1.4rem;
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 30px;
-      line-height: 1.5;
-      min-height: 100px;
-    }
-    
+    .depoimento-card p { font-family: var(--font-heading); font-size: 1.4rem; font-style: italic; color: rgba(255, 255, 255, 0.9); margin-bottom: 30px; line-height: 1.5; min-height: 100px; }
     .depoimento-autor { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); display: block; }
 
-    @keyframes scrollDepo {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(calc(-50% - 15px)); }
-    }
+    @keyframes scrollDepo { 0% { transform: translateX(0); } 100% { transform: translateX(calc(-50% - 15px)); } }
 
     /* ===== PLANOS ===== */
     .planos { background: var(--cream); text-align: center; }
-    .planos-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-      margin-top: 60px;
-    }
-
-    .plano-card {
-      background: var(--white);
-      padding: 50px 40px;
-      border: 1px solid rgba(0,0,0,0.05);
-      transition: var(--transition);
-      text-align: center;
-    }
-
+    .planos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; }
+    .plano-card { background: var(--white); padding: 50px 40px; border: 1px solid rgba(0,0,0,0.05); transition: var(--transition); text-align: center; }
     .plano-card:hover { box-shadow: var(--sombra-elegante); transform: translateY(-10px); }
     .plano-card h3 { font-size: 1.8rem; margin-bottom: 15px; color: var(--emerald-dark); }
     .plano-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 30px; min-height: 54px; }
@@ -578,160 +324,54 @@
     .faq { background: var(--white); }
     .faq-lista { max-width: 900px; margin: 60px auto 0; }
     .faq-item { border-bottom: 1px solid rgba(0,0,0,0.1); }
-
-    .faq-pergunta {
-      width: 100%;
-      text-align: left;
-      background: none;
-      border: none;
-      padding: 30px 0;
-      font-family: var(--font-heading);
-      font-size: 1.4rem;
-      color: var(--emerald-dark);
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: var(--transition);
-    }
-
+    .faq-pergunta { width: 100%; text-align: left; background: none; border: none; padding: 30px 0; font-family: var(--font-heading); font-size: 1.4rem; color: var(--emerald-dark); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: var(--transition); }
     .faq-pergunta:hover { color: var(--gold); }
     .faq-pergunta .icone { font-family: var(--font-body); font-weight: 300; font-size: 1.5rem; transition: var(--transition); }
     .faq-item.ativo .faq-pergunta .icone { transform: rotate(45deg); }
-
     .faq-resposta { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
     .faq-resposta-inner { padding-bottom: 30px; color: var(--text-muted); font-size: 0.95rem; }
 
     /* ===== CTA & AGENDAMENTO ===== */
-    .agendamento {
-      background: var(--emerald-deep);
-      color: var(--white);
-      position: relative;
-    }
-
-    .agendamento-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
+    .agendamento { background: var(--emerald-deep); color: var(--white); position: relative; }
+    .agendamento-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
     .agendamento-info h2 { color: var(--white); font-size: clamp(2.5rem, 4vw, 3.5rem); margin-bottom: 20px; }
     .agendamento-info p { color: rgba(255, 255, 255, 0.6); margin-bottom: 40px; }
-
-    .form-group { margin-bottom: 30px; position: relative; }
     
-    .form-group label {
-      display: block;
-      font-size: 0.7rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 10px;
-    }
-
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 10px 0;
-      color: var(--white);
-      font-family: var(--font-body);
-      font-size: 1rem;
-      transition: var(--transition);
-      outline: none;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus { border-bottom-color: var(--gold); }
+    .form-group { margin-bottom: 30px; position: relative; }
+    .form-group label { display: block; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding: 10px 0; color: var(--white); font-family: var(--font-body); font-size: 1rem; transition: var(--transition); outline: none; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-bottom-color: var(--gold); }
     .form-group select option { background: var(--emerald-dark); color: var(--white); }
 
     /* ===== FOOTER ===== */
-    footer {
-      background: var(--emerald-dark);
-      color: rgba(255, 255, 255, 0.5);
-      padding: 80px 0 30px;
-      font-size: 0.8rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .footer-grid { 
-      display: grid; 
-      grid-template-columns: 1.2fr 1.2fr 0.8fr; 
-      gap: 60px; 
-      margin-bottom: 60px; 
-      align-items: start;
-    }
-
-    /* Logo Footer */
-    .footer-logo {
-      height: 70px;
-      width: auto;
-      margin-bottom: 20px;
-      display: block;
-    }
-
+    footer { background: var(--emerald-dark); color: rgba(255, 255, 255, 0.5); padding: 80px 0 30px; font-size: 0.8rem; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+    .footer-grid { display: grid; grid-template-columns: 1.2fr 1.2fr 0.8fr; gap: 60px; margin-bottom: 60px; align-items: start; }
+    
+    .footer-logo { height: 70px; width: auto; margin-bottom: 20px; display: block; }
     .footer-brand p { max-width: 300px; margin-bottom: 20px; }
-    
-    .footer-col h4 { 
-      color: var(--white); 
-      font-size: 0.8rem; 
-      letter-spacing: 2px; 
-      text-transform: uppercase; 
-      margin-bottom: 25px; 
-    }
-    
-    .footer-col a, .footer-col p { 
-      display: block; 
-      margin-bottom: 15px; 
-      transition: var(--transition); 
-    }
-    
+    .footer-col h4 { color: var(--white); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 25px; }
+    .footer-col a, .footer-col p { display: block; margin-bottom: 15px; transition: var(--transition); }
     .footer-col a:hover { color: var(--gold); }
 
-    /* Mapa */
-    .footer-map {
-      width: 100%;
-      height: 220px;
-      border: 1px solid rgba(198, 168, 124, 0.2);
-      filter: grayscale(100%) contrast(1.2) opacity(0.8);
+    /* Ícones Sociais no Footer */
+    .footer-socials { display: flex; gap: 15px; margin-top: 25px; }
+    .footer-socials a {
+      display: flex; align-items: center; justify-content: center;
+      width: 42px; height: 42px; border-radius: 50%;
+      background: rgba(255,255,255,0.05); color: var(--white);
       transition: var(--transition);
     }
-    
-    .footer-map:hover {
-      filter: grayscale(0%) contrast(1) opacity(1);
-      border-color: var(--gold);
-    }
+    .footer-socials a:hover { background: var(--gold); color: var(--emerald-dark); transform: translateY(-3px); }
+    .footer-socials svg { width: 18px; height: 18px; fill: currentColor; }
 
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      padding-top: 30px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      font-size: 0.7rem;
-    }
+    /* Mapa */
+    .footer-map { width: 100%; height: 220px; border: 1px solid rgba(198, 168, 124, 0.2); filter: grayscale(100%) contrast(1.2) opacity(0.8); transition: var(--transition); }
+    .footer-map:hover { filter: grayscale(0%) contrast(1) opacity(1); border-color: var(--gold); }
+
+    .footer-bottom { display: flex; justify-content: space-between; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.7rem; }
 
     /* ===== WHATSAPP FLUTUANTE ===== */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 40px;
-      right: 40px;
-      width: 60px;
-      height: 60px;
-      background: var(--gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      transition: var(--transition);
-      border-radius: 50%;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    }
-
+    .whatsapp-float { position: fixed; bottom: 40px; right: 40px; width: 60px; height: 60px; background: var(--gold); display: flex; align-items: center; justify-content: center; z-index: 1000; transition: var(--transition); border-radius: 50%; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
     .whatsapp-float:hover { transform: translateY(-5px); background: var(--gold-light); }
     .whatsapp-float svg { width: 30px; height: 30px; fill: var(--emerald-dark); }
 
@@ -743,10 +383,12 @@
 
     /* ===== RESPONSIVIDADE ===== */
     @media (max-width: 1024px) {
-      .hero-grid, .sobre-grid, .profissional-grid, .agendamento-grid { grid-template-columns: 1fr; gap: 50px; }
-      .hero-content { padding-top: 120px; text-align: center; }
+      .hero-grid, .sobre-grid, .agendamento-grid, .especialistas-grid { grid-template-columns: 1fr; gap: 50px; }
+      .hero-content { text-align: center; padding-top: 40px; }
+      .hero-tagline { justify-content: center; }
       .hero-content p { margin: 0 auto 40px; }
       .hero-botoes, .hero-selos { justify-content: center; flex-wrap: wrap; }
+      .hero-image-card { height: 450px; }
       .servicos-grid { grid-template-columns: repeat(2, 1fr); }
       .resultados-grid, .planos-grid { grid-template-columns: 1fr; }
       nav ul { display: none; }
@@ -758,33 +400,149 @@
 
     @media (max-width: 600px) {
       .secao { padding: 80px 0; }
-      .hero-content h1 { font-size: 3rem; }
+      .hero-content h1 { font-size: 2.8rem; }
       .servicos-grid { grid-template-columns: 1fr; }
       .whatsapp-float { bottom: 20px; right: 20px; }
-      .profissional-imagem { height: 500px; }
       .hero-botoes { flex-direction: column; }
       .insta-card { width: 250px; }
       .depoimento-card { width: 300px; padding: 30px; }
       .depoimento-card p { font-size: 1.2rem; min-height: 120px; }
       .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+      .especialista-img { height: 350px; }
     }
-  </style>
+  
+
+    /* ===== AJUSTES SOLICITADOS: PALETA MAIS CLARA + HERO COM VÍDEO ===== */
+    :root {
+      --emerald-dark: #244A36;
+      --emerald-deep: #355D46;
+      --emerald-mid: #78977D;
+      --gold: #B5C29A;
+      --gold-light: #D6DFC8;
+      --cream: #FAFAF7;
+      --text-main: #26382D;
+      --text-muted: #68766B;
+    }
+    header { background: rgba(250,250,247,.88); backdrop-filter: blur(14px); padding: 20px 0; }
+    header.scrolled { background: rgba(250,250,247,.97); border-bottom: 1px solid rgba(36,74,54,.12); }
+    .logo-img { height: 58px; width: auto; max-width: 210px; object-fit: contain; filter: none !important; }
+    header.scrolled .logo-img { height: 48px; }
+    nav a { color: rgba(36,74,54,.82); }
+    nav a:hover { color: #78977D; }
+    .menu-toggle span { background: var(--emerald-dark); }
+    .hero { background: #EEF2EC; padding-top: 130px; }
+    .hero-bg { background-image: url('https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=1920&auto=format&fit=crop'); opacity: .12; filter: blur(1px); }
+    .hero-overlay { background: linear-gradient(90deg, rgba(246,248,244,.97) 0%, rgba(240,244,237,.90) 56%, rgba(228,236,225,.78) 100%); }
+    .hero-content h1 { color: #294A36; }
+    .hero-content h1 em { color: #7F9A75; }
+    .hero-tagline { color: #64805F; }
+    .hero-tagline::before { background: #91A885; }
+    .hero-content p { color: #59695C; }
+    .btn-gold { background: #AFC19F; color: #233B2C; }
+    .btn-gold:hover { background: #C5D2B9; }
+    .btn-outline { color: #34533D; border-color: rgba(52,83,61,.35); }
+    .btn-outline:hover { border-color: #78977D; color: #78977D; }
+    .hero-image-card { border: 6px solid rgba(255,255,255,.65); box-shadow: 0 22px 55px rgba(42,67,49,.15); }
+    .hero-video-card { background: #DDE6DA; }
+    .hero-video { display:block; width:100%; height:100%; object-fit:cover; }
+    .hero-image-wrapper::before { border-color: #9FB396; opacity:.6; }
+    .hero-selos { border-top-color: rgba(42,74,52,.16); }
+    .selo { color: rgba(42,74,52,.72); }
+    .selo::before { color: #91A885; }
+    .servicos, .depoimentos { background: #355D46; }
+    .agendamento { background: #E9EFE7; color: #2A4935; }
+    .agendamento-info h2 { color: #2A4935; }
+    .agendamento-info p { color: #68766B; }
+    .agendamento .form-group label { color: #708B68; }
+    .agendamento .form-group input, .agendamento .form-group select, .agendamento .form-group textarea { color: #2A4935; border-bottom-color: rgba(42,73,53,.24); }
+    .agendamento .form-group select option { background: #F5F7F2; color: #2A4935; }
+    .agendamento .btn-gold { background: #AFC19F; }
+    footer { background: #355D46; }
+    .footer-logo { filter: none !important; background: #F9FAF7; padding: 10px 14px; border-radius: 6px; height: auto; width: min(230px, 100%); }
+    .whatsapp-float { background: #AFC19F; }
+    .whatsapp-float:hover { background: #C5D2B9; }
+    .whatsapp-float svg { fill: #294A36; }
+    @media (max-width: 1024px) {
+      .hero { padding-top: 115px; }
+      header { background: rgba(250,250,247,.95); }
+      nav ul { background: rgba(250,250,247,.98) !important; }
+      nav a { color: #355D46 !important; }
+      .hero-content { padding-top: 15px; }
+    }
+    @media (max-width: 600px) {
+      .logo-img { height: 46px; max-width: 160px; }
+      header.scrolled .logo-img { height: 42px; }
+      .hero { padding-top: 100px; }
+      .hero-image-card { height: 420px; }
+      .hero-video { object-position: center; }
+    }
+
+  
+    /* ===== AJUSTES DE REFINAMENTO SOLICITADOS =====
+       Hero video mais compacto, CTAs principais mais escuros e fotos corrigidas. */
+    .hero-image-card { height: 460px; max-height: 64vh; }
+    .hero-video { object-fit: cover; }
+    .btn-gold, .agendamento .btn-gold { background: #78916D !important; color: #F9FAF7 !important; }
+    .btn-gold:hover, .agendamento .btn-gold:hover { background: #5F7856 !important; color: #FFFFFF !important; }
+    @media (max-width: 1024px) { .hero-image-card { height: 420px; max-height: none; } }
+    @media (max-width: 600px) { .hero-image-card { height: 340px; max-height: none; } }
+
+    /* ===== ANIMAÇÃO DOS BOTÕES — brilho deslizante e resposta suave =====
+    .btn {
+      overflow: hidden; isolation: isolate;
+      transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease,
+                  background-color .35s ease, color .35s ease, border-color .35s ease;
+      transform: translateZ(0);
+    }
+    .btn::after {
+      content: ""; position: absolute; inset: -1px; z-index: -1; pointer-events: none;
+      background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,.06) 32%,
+                  rgba(255,255,255,.42) 48%, rgba(255,255,255,.08) 62%, transparent 100%);
+      transform: translateX(-130%); transition: transform .8s cubic-bezier(.16,1,.3,1);
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(30,55,37,.18); }
+    .btn:hover::after { transform: translateX(130%); }
+    .btn:active { transform: translateY(-1px) scale(.985); box-shadow: 0 5px 14px rgba(30,55,37,.14); }
+    .btn:focus-visible { outline: 2px solid #AFC19F; outline-offset: 4px; }
+    @media (prefers-reduced-motion: reduce) {
+      .btn, .btn::after { transition: none !important; }
+      .btn:hover, .btn:active { transform: none !important; }
+    }
+  
+    /* ===== GALERIA DA CLÍNICA: SLIDE INFINITO ===== */
+    .galeria-clinica { background: var(--cream); color: var(--emerald-dark); overflow:hidden; }
+    .galeria-header { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:32px; }
+    .galeria-header h2 { font-size:clamp(2.2rem,4vw,3.2rem); margin:14px 0; color:var(--emerald-dark); }
+    .galeria-header p { max-width:570px; color:var(--text-muted); }
+    .galeria-marquee { width:100%; overflow:hidden; position:relative; padding:8px 0 18px; }
+    .galeria-marquee::before,.galeria-marquee::after { content:""; position:absolute; z-index:2; top:0; bottom:0; width:clamp(24px,6vw,90px); pointer-events:none; }
+    .galeria-marquee::before { left:0; background:linear-gradient(90deg,var(--cream),transparent); }
+    .galeria-marquee::after { right:0; background:linear-gradient(270deg,var(--cream),transparent); }
+    .galeria-track { display:flex; width:max-content; gap:18px; animation:galeria-loop 42s linear infinite; }
+    .galeria-marquee:hover .galeria-track,.galeria-marquee:focus-within .galeria-track { animation-play-state:paused; }
+    @keyframes galeria-loop { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+    .galeria-item { position:relative; flex:0 0 clamp(250px,31vw,430px); aspect-ratio:4/3; border:1px solid rgba(36,74,54,.12); overflow:hidden; background:#e8eee5; border-radius:16px; }
+    .galeria-item img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s ease; }
+    .galeria-item:hover img { transform:scale(1.045); }
+    .galeria-caption { position:absolute; left:0; right:0; bottom:0; padding:38px 18px 16px; color:#fff; font-weight:600; letter-spacing:.02em; background:linear-gradient(transparent,rgba(15,30,20,.66)); }
+    @media(prefers-reduced-motion:reduce){.galeria-track{animation:none;}}
+</style>
 </head>
 <body>
 
   <!-- ===== HEADER ===== -->
   <header id="header">
     <div class="container header-inner">
-      <a href="#" class="logo-text">
-        Linda Mulher
-        <span>Clínica de Estética</span>
+      <a href="#" class="logo">
+        <!-- SUBSTITUA "logo.png" PELA URL OU CAMINHO DA SUA LOGO ORIGINAL -->
+        <img src="assets/logo-linda-mulher.png" alt="Linda Mulher" class="logo-img">
       </a>
       <nav>
         <ul>
           <li><a href="#sobre">A Clínica</a></li>
           <li><a href="#servicos">Tratamentos</a></li>
           <li><a href="#resultados">Resultados</a></li>
-          <li><a href="#profissional">Especialista</a></li>
+          <li><a href="#especialistas">Especialistas</a></li>
           <li><a href="#planos">Planos</a></li>
           <li><a href="#faq">Dúvidas</a></li>
         </ul>
@@ -794,25 +552,38 @@
     </div>
   </header>
 
-  <!-- ===== 1. HERO ===== -->
+  <!-- ===== 1. HERO (NOVO LAYOUT) ===== -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
-    <div class="container">
+    <div class="container hero-grid">
+      
       <div class="hero-content">
-        <span class="tag reveal">Estética Avançada e Emagrecimento</span>
+        <div class="hero-tagline reveal">Estética Avançada e Emagrecimento</div>
         <h1 class="reveal">Sua melhor versão <br><em>começa aqui.</em></h1>
         <p class="reveal delay-1">Tratamentos faciais, corporais e de emagrecimento com avaliação personalizada, tecnologia de ponta e uma equipe que cuida de você em cada detalhe.</p>
+        
         <div class="hero-botoes reveal delay-2">
           <a href="#agendamento" class="btn btn-gold">Agendar Avaliação</a>
           <a href="#resultados" class="btn btn-outline">Ver Resultados</a>
         </div>
+        
         <div class="hero-selos reveal delay-2">
           <span class="selo">Desde 2016</span>
           <span class="selo">Equipe Qualificada</span>
-          <span class="selo">Centro de Jaraguá do Sul</span>
+          <span class="selo">Jaraguá do Sul</span>
         </div>
       </div>
+
+      <div class="hero-image-wrapper reveal delay-1">
+        <div class="hero-image-card hero-video-card">
+          <video class="hero-video" autoplay muted loop playsinline controls preload="metadata" aria-label="Vídeo de apresentação da Clínica Linda Mulher">
+            <source src="assets/hero-clinica.mp4" type="video/mp4">
+            Seu navegador não suporta vídeo HTML5.
+          </video>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -820,7 +591,7 @@
   <section class="secao" id="sobre">
     <div class="container sobre-grid">
       <div class="sobre-imagem reveal">
-        <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=1000&auto=format&fit=crop" alt="Ambiente Linda Mulher">
+        <img src="assets/balcao.jpg" alt="Ambiente Linda Mulher">
       </div>
       <div class="sobre-texto reveal delay-1">
         <span class="tag">A Clínica</span>
@@ -836,7 +607,7 @@
     </div>
   </section>
 
-  <!-- ===== 3. SERVIÇOS / PROCEDIMENTOS ===== -->
+  <!-- ===== 3. SERVIÇOS ===== -->
   <section class="secao servicos" id="servicos">
     <div class="container">
       <span class="tag reveal">Nossos Tratamentos</span>
@@ -849,7 +620,7 @@
             <h3>Harmonização Facial</h3>
             <p>Realce seus traços com naturalidade, com toxina e fios de sustentação.</p>
           </div>
-          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Linda%20Mulher%20e%20quero%20saber%20mais%20sobre%20Harmoniza%C3%A7%C3%A3o%20Facial." target="_blank" class="card-link">Quero saber mais &rarr;</a>
+          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Linda%20Mulher%20e%20quero%20saber%20mais%20sobre%20Harmoniza%C3%A7%C3%A3o%20Facial." target="_blank" rel="noopener noreferrer" class="card-link">Quero saber mais &rarr;</a>
         </div>
         
         <div class="servico-card reveal delay-1">
@@ -857,7 +628,7 @@
             <h3>Botox (Toxina Botulínica)</h3>
             <p>Suavize linhas de expressão e mantenha o olhar descansado.</p>
           </div>
-          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Linda%20Mulher%20e%20quero%20saber%20mais%20sobre%20Botox." target="_blank" class="card-link">Quero saber mais &rarr;</a>
+          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Linda%20Mulher%20e%20quero%20saber%20mais%20sobre%20Botox." target="_blank" rel="noopener noreferrer" class="card-link">Quero saber mais &rarr;</a>
         </div>
 
         <div class="servico-card reveal delay-2">
@@ -865,7 +636,7 @@
             <h3>Limpeza de Pele</h3>
             <p>Pele renovada, hidratada e com viço radiante.</p>
           </div>
-          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Linda%20Mulher%20e%20quero%20saber%20mais%20sobre%20Limpeza%20de%20Pele." target="_blank" class="card-link">Quero saber mais &rarr;</a>
+          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Linda%20Mulher%20e%20quero%20saber%20mais%20sobre%20Limpeza%20de%20Pele." target="_blank" rel="noopener noreferrer" class="card-link">Quero saber mais &rarr;</a>
         </div>
 
         <div class="servico-card reveal delay-2">
@@ -873,7 +644,7 @@
             <h3>Criolipólise</h3>
             <p>Redução de gordura localizada, sem cirurgia e com máximo conforto.</p>
           </div>
-          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Linda%20Mulher%20e%20quero%20saber%20mais%20sobre%20Criolip%C3%B3lise." target="_blank" class="card-link">Quero saber mais &rarr;</a>
+          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Linda%20Mulher%20e%20quero%20saber%20mais%20sobre%20Criolip%C3%B3lise." target="_blank" rel="noopener noreferrer" class="card-link">Quero saber mais &rarr;</a>
         </div>
 
         <div class="servico-card reveal">
@@ -881,7 +652,7 @@
             <h3>Tratamento de Microvasos</h3>
             <p>Mais leveza e uniformidade para as pernas.</p>
           </div>
-          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Linda%20Mulher%20e%20quero%20saber%20mais%20sobre%20Tratamento%20de%20Microvasos." target="_blank" class="card-link">Quero saber mais &rarr;</a>
+          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Linda%20Mulher%20e%20quero%20saber%20mais%20sobre%20Tratamento%20de%20Microvasos." target="_blank" rel="noopener noreferrer" class="card-link">Quero saber mais &rarr;</a>
         </div>
 
         <div class="servico-card reveal delay-1">
@@ -889,7 +660,7 @@
             <h3>Depilação a Laser</h3>
             <p>Pele lisa por mais tempo, com conforto e segurança.</p>
           </div>
-          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Linda%20Mulher%20e%20quero%20saber%20mais%20sobre%20Depila%C3%A7%C3%A3o%20a%20Laser." target="_blank" class="card-link">Quero saber mais &rarr;</a>
+          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Linda%20Mulher%20e%20quero%20saber%20mais%20sobre%20Depila%C3%A7%C3%A3o%20a%20Laser." target="_blank" rel="noopener noreferrer" class="card-link">Quero saber mais &rarr;</a>
         </div>
 
         <div class="servico-card reveal delay-2">
@@ -897,7 +668,7 @@
             <h3>Tratamentos Capilares</h3>
             <p>Cuide da saúde e da força dos fios.</p>
           </div>
-          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Linda%20Mulher%20e%20quero%20saber%20mais%20sobre%20Tratamentos%20Capilares." target="_blank" class="card-link">Quero saber mais &rarr;</a>
+          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Linda%20Mulher%20e%20quero%20saber%20mais%20sobre%20Tratamentos%20Capilares." target="_blank" rel="noopener noreferrer" class="card-link">Quero saber mais &rarr;</a>
         </div>
 
         <div class="servico-card reveal delay-2">
@@ -905,49 +676,133 @@
             <h3>Emagrecimento</h3>
             <p>Plano acompanhado para resultados reais e sustentáveis.</p>
           </div>
-          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Linda%20Mulher%20e%20quero%20saber%20mais%20sobre%20Emagrecimento." target="_blank" class="card-link">Quero saber mais &rarr;</a>
+          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Linda%20Mulher%20e%20quero%20saber%20mais%20sobre%20Emagrecimento." target="_blank" rel="noopener noreferrer" class="card-link">Quero saber mais &rarr;</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== 4. RESULTADOS ===== -->
+
+  <!-- ===== GALERIA DA CLÍNICA (logo após tratamentos) ===== -->
+  <section class="secao galeria-clinica" id="galeria-clinica">
+    <div class="container">
+      <div class="galeria-header">
+        <div>
+          <span class="tag reveal">Conheça nossos espaços</span>
+          <h2 class="reveal delay-1">Um ambiente pensado<br>para cuidar de você.</h2>
+          <p class="reveal delay-1">Explore a clínica, nossos consultórios, salas de procedimentos e cada detalhe preparado para receber você com conforto e acolhimento.</p>
+        </div>
+      </div>
+      <div class="galeria-marquee" id="galeriaMarquee" aria-label="Galeria ilustrativa dos ambientes de clínica"><div class="galeria-track" id="galeriaGrid" aria-live="polite"></div></div>
+    </div>
+  </section>
+
+  
+    <!-- ===== 4. RESULTADOS ===== -->
   <section class="secao resultados" id="resultados">
     <div class="container">
       <span class="tag reveal">Resultados</span>
       <h2 class="reveal delay-1">Resultados que a gente vê no espelho.</h2>
       <p class="reveal delay-1" style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Transformações reais de clientes da clínica, com naturalidade e segurança.</p>
-      
-      <div class="resultados-grid">
-        <div class="resultado-card reveal">
-          <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=800&auto=format&fit=crop" alt="Harmonização Facial">
-          <div class="resultado-card-overlay"><span>Harmonização Facial</span></div>
+    </div>
+    
+    <!-- Slide Infinito (Ocupa a tela toda para o loop ficar perfeito) -->
+    <div class="resultados-slider-container reveal delay-1">
+      <div class="resultados-track">
+        <!-- Primeira Sequência -->
+        <div class="resultado-card"><img src="assets/resultado-01.jpg" alt="Resultado 1"></div>
+        <div class="resultado-card"><img src="assets/resultado-02.jpg" alt="Resultado 2"></div>
+        <div class="resultado-card"><img src="assets/resultado-03.jpg" alt="Resultado 3"></div>
+        <div class="resultado-card"><img src="assets/resultado-04.jpg" alt="Resultado 4"></div>
+        <div class="resultado-card"><img src="assets/resultado-05.jpg" alt="Resultado 5"></div>
+        <div class="resultado-card"><img src="assets/resultado-06.jpg" alt="Resultado 6"></div>
+        <div class="resultado-card"><img src="assets/resultado-07.jpg" alt="Resultado 7"></div>
+        <div class="resultado-card"><img src="assets/resultado-08.jpg" alt="Resultado 8"></div>
+        <div class="resultado-card"><img src="assets/resultado-09.jpg" alt="Resultado 9"></div>
+        <div class="resultado-card"><img src="assets/resultado-10.jpg" alt="Resultado 10"></div>
+        
+        <!-- Segunda Sequência (Duplicada para o loop infinito) -->
+        <div class="resultado-card"><img src="assets/resultado-01.jpg" alt="Resultado 1"></div>
+        <div class="resultado-card"><img src="assets/resultado-02.jpg" alt="Resultado 2"></div>
+        <div class="resultado-card"><img src="assets/resultado-03.jpg" alt="Resultado 3"></div>
+        <div class="resultado-card"><img src="assets/resultado-04.jpg" alt="Resultado 4"></div>
+        <div class="resultado-card"><img src="assets/resultado-05.jpg" alt="Resultado 5"></div>
+        <div class="resultado-card"><img src="assets/resultado-06.jpg" alt="Resultado 6"></div>
+        <div class="resultado-card"><img src="assets/resultado-07.jpg" alt="Resultado 7"></div>
+        <div class="resultado-card"><img src="assets/resultado-08.jpg" alt="Resultado 8"></div>
+        <div class="resultado-card"><img src="assets/resultado-09.jpg" alt="Resultado 9"></div>
+        <div class="resultado-card"><img src="assets/resultado-10.jpg" alt="Resultado 10"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <p class="reveal" style="font-size: 0.7rem; color: #999; margin-top: 25px;">Os resultados variam de pessoa para pessoa. Imagens publicadas com autorização.</p>
+
+      <!-- Breves depoimentos -->
+      <div class="resultados-depoimentos reveal">
+        <div class="depoimento-mini">
+          <p>“A harmonização facial superou minhas expectativas. Ficou natural e eu me sinto muito mais confiante.”</p>
+          <span>— Ana C.</span>
         </div>
-        <div class="resultado-card reveal delay-1">
-          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=800&auto=format&fit=crop" alt="Emagrecimento">
-          <div class="resultado-card-overlay"><span>Emagrecimento</span></div>
+        <div class="depoimento-mini">
+          <p>“O tratamento para gordura localizada me ajudou a voltar a usar as roupas que eu amo. Atendimento impecável!”</p>
+          <span>— Juliana M.</span>
         </div>
-        <div class="resultado-card reveal delay-2">
-          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=800&auto=format&fit=crop" alt="Rejuvenescimento">
-          <div class="resultado-card-overlay"><span>Rejuvenescimento</span></div>
+        <div class="depoimento-mini">
+          <p>“Fiz o tratamento de microvasos e a diferença é visível. Recomendo a clínica de olhos fechados.”</p>
+          <span>— Patrícia S.</span>
         </div>
       </div>
-      <p class="reveal" style="font-size: 0.7rem; color: #999; margin-top: 20px;">Os resultados variam de pessoa para pessoa. Imagens publicadas com autorização.</p>
-      <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Vi%20os%20resultados%20no%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" class="btn btn-dark reveal" style="margin-top: 40px;">Quero uma Avaliação</a>
+
+      <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Vi%20os%20resultados%20no%20site%20e%20quero%20agendar%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer" class="btn btn-dark reveal" style="margin-top: 40px;">Quero uma Avaliação</a>
     </div>
   </section>
+  
 
-  <!-- ===== 5. SOBRE A PROFISSIONAL ===== -->
-  <section class="secao" id="profissional">
-    <div class="container profissional-grid">
-      <div class="profissional-imagem reveal">
-        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1000&auto=format&fit=crop" alt="Especialista Linda Mulher">
+
+  <!-- ===== 5. ESPECIALISTAS (NOVA SESSÃO DUPLA) ===== -->
+  <section class="secao especialistas-secao" id="especialistas">
+    <div class="container">
+      <div style="text-align: center;">
+        <span class="tag reveal">Nosso Time</span>
+        <h2 class="reveal delay-1" style="font-size: clamp(2.5rem, 4vw, 3.5rem); color: var(--emerald-dark);">As Especialistas</h2>
+        <p class="reveal delay-1" style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">Profissionais altamente qualificadas e dedicadas a proporcionar a melhor experiência e resultados para você.</p>
       </div>
-      <div class="profissional-texto reveal delay-1">
-        <span class="tag">A Especialista</span>
-        <h2>Conheça quem cuida de você.</h2>
-        <p>Por trás de cada atendimento existe uma equipe dedicada a ouvir, avaliar e indicar o que realmente faz sentido para você. [Nome, formação e registro profissional.]</p>
-        <blockquote>“Estética de verdade é ressaltar quem você já é.”</blockquote>
+
+      <div class="especialistas-grid">
+        
+        <!-- Dra. Heloise -->
+        <div class="especialista-card reveal">
+          <!-- Foto original enviada: Dra. Heloise Machado -->
+          <img src="assets/heloise-machado.jpg" alt="Dra. Heloise Machado" class="especialista-img">
+          <div class="especialista-info">
+            <h3>Dra. Heloise Machado</h3>
+            <span class="especialista-cargo">Biomédica Esteta | CRBM5 - 4804</span>
+            <p>Atua na área de Biomedicina Estética com foco em procedimentos faciais e corporais. Especialista na aplicação de toxina botulínica (botox) e preenchimento labial.</p>
+            <p>Atendimento realizado na clínica Linda Mulher, em Jaraguá do Sul - SC.</p>
+            <a href="https://www.instagram.com/dra.heloisemachado/" target="_blank" rel="noopener noreferrer" class="especialista-social">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              @dra.heloisemachado
+            </a>
+          </div>
+        </div>
+
+        <!-- Eleandra Letícia -->
+        <div class="especialista-card reveal delay-1">
+          <!-- Foto original enviada: Eleandra Letícia -->
+          <img src="assets/eleandra-leticia.jpg" alt="Eleandra Letícia" class="especialista-img">
+          <div class="especialista-info">
+            <h3>Eleandra Letícia</h3>
+            <span class="especialista-cargo">Sócia-Administradora | Esteta Avançada</span>
+            <p>Atua com foco em estética facial e corporal, destacando-se em harmonização e rejuvenescimento com foco na naturalidade, incluindo aplicação de toxina botulínica.</p>
+            <p>Desenvolve protocolos personalizados em avaliações individualizadas para estética facial, corporal e emagrecimento (criolipólise, laser Lavieen, redução de medidas e flacidez).</p>
+            <a href="https://www.facebook.com/eleandraleticia/" target="_blank" rel="noopener noreferrer" class="especialista-social">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              Eleandra Letícia
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -961,50 +816,57 @@
     </div>
     
     <div class="insta-slider-container reveal delay-2">
-      <div class="insta-track">
-        <a href="https://www.instagram.com/lindamulherjaragua/" target="_blank" class="insta-card">
-          <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=600&auto=format&fit=crop" alt="Instagram 1">
-          <div class="insta-icon">IG</div>
-        </a>
-        <a href="https://www.instagram.com/lindamulherjaragua/" target="_blank" class="insta-card">
-          <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?q=80&w=600&auto=format&fit=crop" alt="Instagram 2">
-          <div class="insta-icon">IG</div>
-        </a>
-        <a href="https://www.instagram.com/lindamulherjaragua/" target="_blank" class="insta-card">
-          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=600&auto=format&fit=crop" alt="Instagram 3">
-          <div class="insta-icon">IG</div>
-        </a>
-        <a href="https://www.instagram.com/lindamulherjaragua/" target="_blank" class="insta-card">
-          <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?q=80&w=600&auto=format&fit=crop" alt="Instagram 4">
+          <div class="insta-track">
+        <!-- Post 1 -->
+        <a href="https://www.instagram.com/p/DZxwwpKlI8r/?img_index=1" target="_blank" rel="noopener noreferrer" class="insta-card">
+          <img src="assets/insta-01.webp" alt="Instagram 1">
           <div class="insta-icon">IG</div>
         </a>
         
-        <!-- Duplicado para loop -->
-        <a href="https://www.instagram.com/lindamulherjaragua/" target="_blank" class="insta-card">
-          <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=600&auto=format&fit=crop" alt="Instagram 1">
+        <!-- Post 2 -->
+        <a href="https://www.instagram.com/p/DfIhVW0hzHu/" target="_blank" rel="noopener noreferrer" class="insta-card">
+          <img src="assets/insta-02.webp" alt="Instagram 2">
           <div class="insta-icon">IG</div>
         </a>
-        <a href="https://www.instagram.com/lindamulherjaragua/" target="_blank" class="insta-card">
-          <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?q=80&w=600&auto=format&fit=crop" alt="Instagram 2">
+        
+        <!-- Post 3 -->
+        <a href="https://www.instagram.com/p/DfIfHIxgcnU/?img_index=1" target="_blank" rel="noopener noreferrer" class="insta-card">
+          <img src="assets/insta-03.webp" alt="Instagram 3">
           <div class="insta-icon">IG</div>
         </a>
-        <a href="https://www.instagram.com/lindamulherjaragua/" target="_blank" class="insta-card">
-          <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=600&auto=format&fit=crop" alt="Instagram 3">
+        
+        <!-- Post 4 -->
+        <a href="https://www.instagram.com/p/Dd1nO1LFJSd/?img_index=1" target="_blank" rel="noopener noreferrer" class="insta-card">
+          <img src="assets/insta-04.webp" alt="Instagram 4">
           <div class="insta-icon">IG</div>
         </a>
-        <a href="https://www.instagram.com/lindamulherjaragua/" target="_blank" class="insta-card">
-          <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?q=80&w=600&auto=format&fit=crop" alt="Instagram 4">
+        
+        <!-- Duplicado para loop infinito -->
+        <a href="https://www.instagram.com/p/DZxwwpKlI8r/?img_index=1" target="_blank" rel="noopener noreferrer" class="insta-card">
+          <img src="assets/insta-01.webp" alt="Instagram 1">
+          <div class="insta-icon">IG</div>
+        </a>
+        <a href="https://www.instagram.com/p/DfIhVW0hzHu/" target="_blank" rel="noopener noreferrer" class="insta-card">
+          <img src="assets/insta-02.webp" alt="Instagram 2">
+          <div class="insta-icon">IG</div>
+        </a>
+        <a href="https://www.instagram.com/p/DfIfHIxgcnU/?img_index=1" target="_blank" rel="noopener noreferrer" class="insta-card">
+          <img src="assets/insta-03.webp" alt="Instagram 3">
+          <div class="insta-icon">IG</div>
+        </a>
+        <a href="https://www.instagram.com/p/Dd1nO1LFJSd/?img_index=1" target="_blank" rel="noopener noreferrer" class="insta-card">
+          <img src="assets/insta-04.webp" alt="Instagram 4">
           <div class="insta-icon">IG</div>
         </a>
       </div>
     </div>
     
     <div class="container" style="text-align: center;">
-      <a href="https://www.instagram.com/lindamulherjaragua/" target="_blank" class="btn btn-dark reveal" style="margin-top: 40px;">Seguir no Instagram</a>
+      <a href="https://www.instagram.com/lindamulherjaragua/" target="_blank" rel="noopener noreferrer" class="btn btn-dark reveal" style="margin-top: 40px;">Seguir no Instagram</a>
     </div>
   </section>
 
-  <!-- ===== 7. DEPOIMENTOS (INFINITE SLIDER) ===== -->
+  <!-- ===== 7. DEPOIMENTOS ===== -->
   <section class="secao depoimentos" id="depoimentos">
     <div class="container">
       <h2 class="reveal">Quem confia, recomenda.</h2>
@@ -1059,17 +921,17 @@
         <div class="plano-card reveal">
           <h3>Facial</h3>
           <p>Protocolos de rejuvenescimento, hidratação e harmonização para realçar sua beleza natural.</p>
-          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Plano%20Facial." target="_blank" class="btn btn-gold" style="width: 100%;">Quero este plano</a>
+          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Plano%20Facial." target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%;">Quero este plano</a>
         </div>
         <div class="plano-card reveal delay-1">
           <h3>Corporal</h3>
           <p>Tratamentos para gordura localizada, celulite e flacidez, com tecnologia de ponta.</p>
-          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Plano%20Corporal." target="_blank" class="btn btn-gold" style="width: 100%;">Quero este plano</a>
+          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Plano%20Corporal." target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%;">Quero este plano</a>
         </div>
         <div class="plano-card reveal delay-2">
           <h3>Emagrecimento</h3>
           <p>Acompanhamento completo e multidisciplinar para você alcançar seus objetivos com saúde.</p>
-          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Plano%20de%20Emagrecimento." target="_blank" class="btn btn-gold" style="width: 100%;">Quero este plano</a>
+          <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Tenho%20interesse%20no%20Plano%20de%20Emagrecimento." target="_blank" rel="noopener noreferrer" class="btn btn-gold" style="width: 100%;">Quero este plano</a>
         </div>
       </div>
     </div>
@@ -1124,7 +986,7 @@
           <p style="color: var(--gold); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 10px;">Localização</p>
           <p style="color: var(--white); margin-bottom: 5px;">R. Carlos Hafermann, 66</p>
           <p style="color: var(--white);">Centro — Jaraguá do Sul/SC, 89251-730</p>
-          <a href="https://maps.google.com/?q=Clínica+Linda+Mulher+-+R.+Carlos+Hafermann,+66+-+Centro,+Jaraguá+do+Sul+-+SC,+89251-730" target="_blank" style="color: var(--gold); font-size: 0.8rem; margin-top: 15px; display: inline-block;">Como chegar &rarr;</a>
+          <a href="https://maps.google.com/?q=Clínica+Linda+Mulher+-+R.+Carlos+Hafermann,+66+-+Centro,+Jaraguá+do+Sul+-+SC,+89251-730" target="_blank" rel="noopener noreferrer" style="color: var(--gold); font-size: 0.8rem; margin-top: 15px; display: inline-block;">Como chegar &rarr;</a>
         </div>
       </div>
       
@@ -1168,27 +1030,8 @@
         
         <!-- Coluna 1: Logo e Descrição -->
         <div class="footer-brand">
-          <svg class="footer-logo" viewBox="0 0 220 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="verdeGradF" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#A8D5BA"/>
-                <stop offset="100%" stop-color="#1E5A3A"/>
-              </linearGradient>
-              <linearGradient id="verdeGradF2" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#3D8B5E"/>
-                <stop offset="100%" stop-color="#0B2B1B"/>
-              </linearGradient>
-            </defs>
-            <!-- Lotus/Leaves -->
-            <path d="M110 12 C95 25 92 40 100 52 C105 58 115 58 120 52 C128 40 125 25 110 12Z" fill="url(#verdeGradF)"/>
-            <path d="M85 25 C75 32 72 45 78 55 C83 62 92 60 95 52 C98 44 95 35 85 25Z" fill="url(#verdeGradF2)"/>
-            <path d="M135 25 C145 32 148 45 142 55 C137 62 128 60 125 52 C122 44 125 35 135 25Z" fill="url(#verdeGradF2)"/>
-            <path d="M62 40 C55 46 55 56 60 62 C65 67 73 65 75 58 C77 51 73 45 62 40Z" fill="#1E5A3A" opacity="0.7"/>
-            <path d="M158 40 C165 46 165 56 160 62 C155 67 147 65 145 58 C143 51 147 45 158 40Z" fill="#1E5A3A" opacity="0.7"/>
-            <!-- Text -->
-            <text x="110" y="68" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="13" letter-spacing="3" fill="#FFFFFF" font-weight="500">LINDA MULHER</text>
-            <text x="110" y="78" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="4.5" letter-spacing="2.5" fill="#C6A87C">CLÍNICA DE ESTÉTICA E EMAGRECIMENTO</text>
-          </svg>
+          <!-- SUBSTITUA "logo.png" PELA URL DA SUA LOGO -->
+          <img src="assets/logo-linda-mulher.png" alt="Linda Mulher" class="footer-logo">
           <p>Estética avançada e emagrecimento com acolhimento, tecnologia e resultados naturais em Jaraguá do Sul.</p>
         </div>
 
@@ -1198,21 +1041,31 @@
           <iframe 
             class="footer-map"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.2916842519936!2d-49.0817195!3d-26.4844079!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94de95a69c031277%3A0x430d733f2dc557fe!2sCl%C3%ADnica%20Linda%20Mulher%20l%20Est%C3%A9tica%20Avan%C3%A7ada%20e%20Emagrecimento!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
-            allowfullscreen="" 
-            loading="lazy" 
-            referrerpolicy="no-referrer-when-downgrade">
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
           </iframe>
-          <a href="https://maps.google.com/?q=Clínica+Linda+Mulher+-+R.+Carlos+Hafermann,+66+-+Centro,+Jaraguá+do+Sul+-+SC,+89251-730" target="_blank" style="margin-top: 15px;">Abrir no Google Maps &rarr;</a>
+          <a href="https://maps.google.com/?q=Clínica+Linda+Mulher+-+R.+Carlos+Hafermann,+66+-+Centro,+Jaraguá+do+Sul+-+SC,+89251-730" target="_blank" rel="noopener noreferrer" style="margin-top: 15px;">Abrir no Google Maps &rarr;</a>
         </div>
 
-        <!-- Coluna 3: Contato e Social -->
+        <!-- Coluna 3: Contato e Social (ICONES) -->
         <div class="footer-col">
-          <h4>Contato & Social</h4>
+          <h4>Contato</h4>
           <p>(47) 3307-5413</p>
           <p>(47) 99187-9520</p>
-          <a href="https://www.instagram.com/lindamulherjaragua/" target="_blank">Instagram</a>
-          <a href="https://www.facebook.com/" target="_blank">Facebook</a>
-          <a href="https://wa.me/5547991879520" target="_blank">WhatsApp</a>
+          
+          <div class="footer-socials">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/lindamulherjaragua/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <!-- Facebook (Link da Eleandra) -->
+            <a href="https://www.facebook.com/eleandraleticia/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <!-- WhatsApp -->
+            <a href="https://wa.me/5547991879520" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+          </div>
         </div>
         
       </div>
@@ -1224,7 +1077,7 @@
   </footer>
 
   <!-- ===== WHATSAPP FLUTUANTE ===== -->
-  <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20atendimento%20exclusivo." target="_blank" class="whatsapp-float" aria-label="Falar no WhatsApp">
+  <a href="https://wa.me/5547991879520?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20um%20atendimento%20exclusivo." target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Falar no WhatsApp">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
     </svg>
@@ -1311,12 +1164,53 @@
         navUl.style.top = '100%';
         navUl.style.left = '0';
         navUl.style.width = '100%';
-        navUl.style.background = 'rgba(5, 20, 13, 0.98)';
+        navUl.style.background = 'rgba(250, 250, 247, 0.98)';
         navUl.style.padding = '20px';
         navUl.style.textAlign = 'center';
-        navUl.style.borderBottom = '1px solid rgba(198, 168, 124, 0.2)';
+        navUl.style.borderBottom = '1px solid rgba(36, 74, 54, 0.12)';
       }
     });
-  </script>
+  
+    // ===== GALERIA DA CLÍNICA EM SLIDE INFINITO =====
+(() => {
+  const track = document.getElementById('galeriaGrid');
+  if (!track) return;
+
+  const fotos = [
+    'assets/galeria-01.jpg',
+    'assets/galeria-02.jpg',
+    'assets/galeria-03.jpg',
+    'assets/galeria-04.jpg',
+    'assets/galeria-05.jpg',
+    'assets/galeria-06.jpg',
+    'assets/galeria-07.jpg',
+    'assets/galeria-08.jpg',
+    'assets/galeria-09.jpg',
+    'assets/galeria-10.png'
+  ];
+
+  const card = (src) => {
+    const item = document.createElement('article');
+    item.className = 'galeria-item';
+
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = 'Ambiente da clínica';
+    img.loading = 'lazy';
+
+    item.appendChild(img);
+    return item;
+  };
+
+  track.innerHTML = '';
+
+  const originals = fotos.map(card);
+  originals.forEach(item => track.appendChild(item));
+
+  // Duplica a sequência para o loop contínuo
+  originals.forEach(item => track.appendChild(item.cloneNode(true)));
+})();
+
+</script>
 </body>
 </html>
