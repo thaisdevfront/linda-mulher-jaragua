@@ -156,13 +156,41 @@
       width: 100%; height: 100%; object-fit: cover;
     }
 
-    .hero-image-wrapper { position: relative; }
-    .hero-image-wrapper::before {
-      content: ''; position: absolute; top: -20px; right: -20px;
-      width: 100%; height: 100%; border: 1px solid var(--gold);
-      border-radius: 20px; z-index: -1; opacity: 0.3;
-    }
+    /* ===== BORDA DECORATIVA DE FUNDO DO VÍDEO HERO (MESMA PROPORÇÃO 4:5) ===== */
+.hero-image-wrapper {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+}
 
+.hero-image-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 5;          /* mesma proporção do vídeo */
+  border: 1px solid var(--gold);
+  border-radius: 20px;
+  z-index: -1;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Responsivo: mantém a proporção da borda igual à do vídeo */
+@media (max-width: 1024px) {
+  .hero-image-wrapper::before {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-image-wrapper::before {
+    aspect-ratio: 4 / 5;
+  }
+}
     .hero-selos {
       display: flex; gap: 30px; border-top: 1px solid rgba(255, 255, 255, 0.1);
       padding-top: 30px;
@@ -505,6 +533,44 @@
       }
     }
 
+    /* ===== VÍDEO HERO: PROPORÇÃO 4:5 NO DESKTOP (AJUSTE SOLICITADO) ===== */
+    .hero-image-card.hero-video-card {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+      max-height: 80vh;
+      margin: 0 auto;
+    }
+
+    .hero-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-image-card.hero-video-card {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 5;
+        max-height: 70vh;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-image-card.hero-video-card {
+        height: auto;
+        aspect-ratio: 4 / 5;
+        max-height: 80vh;
+        margin: 0 auto;
+        width: 100%;
+      }
+    }
+
     /* ===== GALERIA DA CLÍNICA: SLIDE INFINITO ===== */
     .galeria-clinica { background: var(--cream); color: var(--emerald-dark); overflow:hidden; }
     .galeria-header { display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:32px; }
@@ -597,7 +663,7 @@
 
       <div class="hero-image-wrapper reveal delay-1">
         <div class="hero-image-card hero-video-card">
-          <video class="hero-video" autoplay muted loop playsinline controls preload="metadata" aria-label="Vídeo de apresentação da Clínica Linda Mulher">
+          <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-label="Vídeo de apresentação da Clínica Linda Mulher">
             <source src="assets/hero-clinica.mp4" type="video/mp4">
             Seu navegador não suporta vídeo HTML5.
           </video>
