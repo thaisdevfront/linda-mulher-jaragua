@@ -386,7 +386,6 @@
       .hero-tagline { justify-content: center; }
       .hero-content p { margin: 0 auto 40px; }
       .hero-botoes, .hero-selos { justify-content: center; flex-wrap: wrap; }
-      .hero-image-card { height: 450px; }
       .servicos-grid { grid-template-columns: repeat(2, 1fr); }
       .resultados-grid, .planos-grid { grid-template-columns: 1fr; }
       nav ul { display: none; }
@@ -470,17 +469,41 @@
       .logo-img { height: 46px; max-width: 160px; }
       header.scrolled .logo-img { height: 42px; }
       .hero { padding-top: 100px; }
-      .hero-image-card { height: 420px; }
       .hero-video { object-position: center; }
     }
 
-    /* ===== AJUSTES DE REFINAMENTO ===== */
-    .hero-image-card { height: 460px; max-height: 64vh; }
+    /* ===== AJUSTES DE REFINAMENTO E VÍDEO HERO ===== */
+    .hero-image-card { 
+      height: 550px; /* Aumentado */
+      max-height: 70vh;
+      margin: 0 auto; /* Centraliza na coluna */
+    }
     .hero-video { object-fit: cover; }
     .btn-gold, .agendamento .btn-gold { background: #78916D !important; color: #F9FAF7 !important; }
     .btn-gold:hover, .agendamento .btn-gold:hover { background: #5F7856 !important; color: #FFFFFF !important; }
-    @media (max-width: 1024px) { .hero-image-card { height: 420px; max-height: none; } }
-    @media (max-width: 600px) { .hero-image-card { height: 340px; max-height: none; } }
+    
+    @media (max-width: 1024px) { 
+      .hero-image-card { 
+        height: 500px; 
+        max-height: 65vh; 
+        margin: 0 auto;
+      } 
+    }
+    
+    @media (max-width: 600px) { 
+      .hero-image-card { 
+        height: auto;
+        aspect-ratio: 9 / 16; /* Vídeo 100% na vertical */
+        max-height: 80vh; 
+        margin: 0 auto;
+        width: 100%;
+      } 
+      .hero-video {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
+    }
 
     /* ===== GALERIA DA CLÍNICA: SLIDE INFINITO ===== */
     .galeria-clinica { background: var(--cream); color: var(--emerald-dark); overflow:hidden; }
@@ -492,7 +515,6 @@
     .galeria-marquee::before { left:0; background:linear-gradient(90deg,var(--cream),transparent); }
     .galeria-marquee::after { right:0; background:linear-gradient(270deg,var(--cream),transparent); }
     
-    /* Correção Safari: adicionado -webkit-animation e removido o prefers-reduced-motion */
     .galeria-track { 
       display: flex; 
       width: max-content; 
@@ -507,7 +529,6 @@
     @keyframes galeria-loop { from { transform: translateX(0); } to { transform: translateX(-50%); } }
     @-webkit-keyframes galeria-loop { from { -webkit-transform: translateX(0); } to { -webkit-transform: translateX(-50%); } }
     
-    /* Correção Safari: fixed width/height + margin-right */
     .galeria-item { 
       position: relative; 
       flex: 0 0 350px; 
@@ -523,7 +544,6 @@
     .galeria-item:hover img { transform: scale(1.045); }
     .galeria-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 38px 18px 16px; color: #fff; font-weight: 600; letter-spacing: .02em; background: linear-gradient(transparent, rgba(15,30,20,.66)); }
     
-    /* Ajuste Mobile para Galeria */
     @media (max-width: 600px) {
       .galeria-item { flex: 0 0 250px; width: 250px; height: 187px; }
     }
@@ -1202,10 +1222,10 @@
         navUl.style.textAlign = 'center';
         navUl.style.borderBottom = '1px solid rgba(36, 74, 54, 0.12)';
       }
-    }); /* <-- Correção de erro sintático para o Chrome */
+    }); /* Correção de erro sintático */
 
     // ===== GALERIA DA CLÍNICA EM SLIDE INFINITO =====
-    ;(() => { /* <-- Ponto e vírgula adicionado por segurança */
+    ;(() => { 
       const track = document.getElementById('galeriaGrid');
       if (!track) return;
 
