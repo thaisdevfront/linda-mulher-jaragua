@@ -492,33 +492,41 @@
     .galeria-marquee::before { left:0; background:linear-gradient(90deg,var(--cream),transparent); }
     .galeria-marquee::after { right:0; background:linear-gradient(270deg,var(--cream),transparent); }
     
-    /* Correção Safari: removido gap do track */
-    .galeria-track { display:flex; width:max-content; animation:galeria-loop 42s linear infinite; }
-    .galeria-marquee:hover .galeria-track,.galeria-marquee:focus-within .galeria-track { animation-play-state:paused; }
-    @keyframes galeria-loop { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+    /* Correção Safari: adicionado -webkit-animation e removido o prefers-reduced-motion */
+    .galeria-track { 
+      display: flex; 
+      width: max-content; 
+      animation: galeria-loop 42s linear infinite;
+      -webkit-animation: galeria-loop 42s linear infinite; 
+    }
+    .galeria-marquee:hover .galeria-track,.galeria-marquee:focus-within .galeria-track { 
+      animation-play-state: paused; 
+      -webkit-animation-play-state: paused; 
+    }
+    
+    @keyframes galeria-loop { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @-webkit-keyframes galeria-loop { from { -webkit-transform: translateX(0); } to { -webkit-transform: translateX(-50%); } }
     
     /* Correção Safari: fixed width/height + margin-right */
     .galeria-item { 
-      position:relative; 
-      flex:0 0 350px; 
+      position: relative; 
+      flex: 0 0 350px; 
       width: 350px; 
       height: 262px; 
-      border:1px solid rgba(36,74,54,.12); 
-      overflow:hidden; 
-      background:#e8eee5; 
-      border-radius:16px; 
+      border: 1px solid rgba(36,74,54,.12); 
+      overflow: hidden; 
+      background: #e8eee5; 
+      border-radius: 16px; 
       margin-right: 18px;
     }
-    .galeria-item img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .7s ease; }
-    .galeria-item:hover img { transform:scale(1.045); }
-    .galeria-caption { position:absolute; left:0; right:0; bottom:0; padding:38px 18px 16px; color:#fff; font-weight:600; letter-spacing:.02em; background:linear-gradient(transparent,rgba(15,30,20,.66)); }
+    .galeria-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .7s ease; }
+    .galeria-item:hover img { transform: scale(1.045); }
+    .galeria-caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 38px 18px 16px; color: #fff; font-weight: 600; letter-spacing: .02em; background: linear-gradient(transparent, rgba(15,30,20,.66)); }
     
     /* Ajuste Mobile para Galeria */
     @media (max-width: 600px) {
-      .galeria-item { flex:0 0 250px; width: 250px; height: 187px; }
+      .galeria-item { flex: 0 0 250px; width: 250px; height: 187px; }
     }
-    
-    @media(prefers-reduced-motion:reduce){.galeria-track{animation:none;}}
   </style>
 </head>
 <body>
